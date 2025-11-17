@@ -604,6 +604,63 @@ InventoryAPI/
 └── InventoryAPI.csproj
 
 ⸻
+FINAL PROJECT
+⸻
+
+## Data Dictionary
+
+### Accounts Table
+
+| Field          | Type    | Constraint                  | Description                         |
+|----------------|---------|----------------------------|-------------------------------------|
+| AccountNumber  | string  | Primary Key, 5 chars       | Unique account identifier           |
+| CustomerID     | int     | Foreign Key → Customers    | Owner of the account                |
+| Balance        | decimal | Not null                   | Current account balance             |
+| AccountType    | char    | 'C' = Checking, 'S' = Savings | Type of account                   |
+
+### Customers Table
+
+| Field       | Type    | Constraint       | Description                         |
+|-------------|---------|-----------------|-------------------------------------|
+| CustomerID  | int     | Primary Key      | Unique customer identifier           |
+| FirstName   | string  | Not null         | Customer's first name                |
+| LastName    | string  | Not null         | Customer's last name                 |
+| PIN         | string  | 4 digits         | Customer login PIN                    |
+
+### 2️⃣ Relationship Diagram
+
+```mermaid
+erDiagram
+    CUSTOMER ||--o{ ACCOUNT : owns
+    CUSTOMER {
+        int CustomerID PK
+        string FirstName
+        string LastName
+        string PIN
+    }
+    ACCOUNT {
+        string AccountNumber PK
+        int CustomerID FK
+        decimal Balance
+        char AccountType
+    }
+```
+
+### Data Flow Diagram (Level 0)
+
+```mermaid
+flowchart TD
+    U[User] -->|Enter Account Number / PIN| ATMService
+    ATMService -->|Check Login| Bank
+    Bank -->|Return Account| ATMService
+    ATMService -->|Process Transaction| Account
+    Account -->|Update Balance / Confirm| ATMService
+    ATMService -->|Display Result| U
+```
+
+⸻
+
+
 
 👨‍💻 Author
 

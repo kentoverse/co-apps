@@ -674,36 +674,44 @@ Class-Method Relationships
 | Bank            | List<Account>, List<Customer>           | FindAccount(), LoadFromFiles()   | —           | Collection handler & SQL fallback    |
 | ATMService      | CurrentAccount                           | ShowMenu(), ProcessTransaction() | —           | Handles input/output and menu logic  |       |
 
-
 ### 2️⃣ Flowcharts
 
 ```mermaid
-    flowchart TD
+   flowchart TD
     A[Start] --> B[Prompt user for account number and PIN]
     B --> C{Account exists?}
     C -->|Yes| D[Set CurrentAccount and show menu]
-    C -->|No| E[Display "Account not found" and retry]
+    C -->|No| E[Account not found, retry]
     D --> F[User selects action: Deposit, Withdraw, Check Balance, Exit]
-    F -->|Deposit| G[Prompt for amount and call Deposit()]
-    F -->|Withdraw| H[Prompt for amount and call Withdraw()]
+    F -->|Deposit| G[Prompt for amount and call Deposit]
+    F -->|Withdraw| H[Prompt for amount and call Withdraw]
     F -->|Check Balance| I[Display CurrentAccount balance]
     F -->|Exit| J[End Session]
     G --> D
     H --> D
-    I --> DU
+    I --> D
 ```
 
 ### 2️⃣ Deposit & Withdraw Logic
 
 ```mermaid
-   flowchart TD
-    A[Start Transaction] --> B[Prompt user for amount]
-    B --> C{Amount valid?}
-    C -->|Yes| D[Deposit/Withdraw amount]
-    C -->|No| E[Show error message]
-    D --> F[Update account balance]
-    F --> G[Return to main menu]
-    E --> G
+  flowchart TD
+    A[Start Transaction] --> B[Select action: Deposit or Withdraw]
+    B -->|Deposit| C[Prompt for deposit amount]
+    C --> D{Amount valid?}
+    D -->|Yes| E[Add amount to CurrentAccount balance]
+    D -->|No| F[Show error and retry]
+    E --> G[Display updated balance]
+    F --> C
+    G --> H[Return to main menu]
+    
+    B -->|Withdraw| I[Prompt for withdrawal amount]
+    I --> J{Amount valid and <= balance?}
+    J -->|Yes| K[Subtract amount from CurrentAccount balance]
+    J -->|No| L[Show error and retry]
+    K --> M[Display updated balance]
+    L --> I
+    M --> H
 ```
 
 ### 2️⃣ Pseudocode

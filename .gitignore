@@ -28,8 +28,9 @@ packages/
 *.tmp
 *.temp
 
-# Ignore ZANDBOX folder
+# Ignore  folder
 ZANDBOX/
+coop-transact/
 
 # Ignore OS-specific files
 .DS_Store

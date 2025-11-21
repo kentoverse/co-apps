@@ -1,5 +1,4 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/Azure/azure-dev/main/schemas/v1.0/azure.yaml.json
-
 name: todo-csharp-sql-swa-func
 metadata:
   template: todo-csharp-sql-swa-func@0.0.1-beta
@@ -38,6 +37,3 @@ services:
     project: ./src/api-core
     language: dotnet
     host: function
-projects:
-  app-expo:
-    path: ./src/app-expo

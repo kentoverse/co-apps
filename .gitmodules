@@ -1,0 +1,3 @@
+[submodule "coop-infra-azure"]
+	path = coop-infra-azure
+	url = https://github.com/kentoverse/coop-infra-azure.git

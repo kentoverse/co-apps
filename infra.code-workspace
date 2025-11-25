@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "infra",
+			"path": "../../.Trash/infra"
+		},
+		{
+			"name": "coop",
+			"path": "../coop-repo/coop"
+		}
+	],
+	"settings": {}
+}

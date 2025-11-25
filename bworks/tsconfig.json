@@ -1,0 +1,21 @@
+{
+  "extends": "@react-native/typescript-config",
+  "compilerOptions": {
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"],
+      "tests": ["/tests/*"],
+      "components/*": ["./components/*"]
+    },
+    "types": ["jest"],
+    "ignoreDeprecations": "6.0"
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "src/types/**/*.ts",
+    "expo-env.d.ts"
+  ]
+}
